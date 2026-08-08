@@ -1,0 +1,149 @@
+{
+  "project": "Daqiq — GeoAI Café Site Selection · Milan",
+  "phase": "Phase 1 — Proof of Concept",
+  "generated": "2026-03-27 10:24",
+  "study_area": "Municipio 7, 8, 9 — Milan, Italy",
+  "h3_resolution": 9,
+  "cells": {
+    "total_viable": 392,
+    "positive_label": 84,
+    "negative_label": 308,
+    "positive_rate": 0.2143
+  },
+  "suitability_tiers": {
+    "HIGH": 36,
+    "MEDIUM": 157,
+    "LOW": 199,
+    "thresholds": {
+      "ahp_high": 0.5,
+      "ahp_med": 0.35,
+      "rf_high": 0.6,
+      "rf_med": 0.45,
+      "logic": "HIGH requires BOTH ahp>=ahp_high AND rf>=rf_high; MEDIUM requires EITHER score >= medium threshold"
+    }
+  },
+  "score_ranges": {
+    "ahp_score": {
+      "min": 0.0576,
+      "max": 0.71,
+      "mean": 0.3352
+    },
+    "rf_probability": {
+      "min": 0.0,
+      "max": 1.0,
+      "mean": 0.336
+    },
+    "combined_score": {
+      "min": 0.0217,
+      "max": 0.9936,
+      "mean": 0.5013
+    }
+  },
+  "model_performance": {
+    "rf_auc_validation": 0.9318,
+    "rf_cv_auc_mean": 0.9654,
+    "rf_cv_auc_std": 0.0264,
+    "spearman_ahp_rf_cell_level": 0.7206,
+    "spearman_ahp_rf_pvalue": 0.0
+  },
+  "features": {
+    "count": 13,
+    "shap_columns": [
+      "shap_Metro_Access",
+      "shap_Bus_Tram_Density",
+      "shap_Network_Centrality",
+      "shap_Population_Density",
+      "shap_Office_Density",
+      "shap_University_Proximity",
+      "shap_Night_Light",
+      "shap_Retail_Density",
+      "shap_Tourist_POIs",
+      "shap_POI_Diversity",
+      "shap_Café_Density",
+      "shap_Market_Opportunity",
+      "shap_Pedestrian_Street"
+    ],
+    "ahp_clusters": {
+      "Accessibility": {
+        "weight": 0.5579,
+        "features": [
+          "Metro Access",
+          "Bus/Tram Density",
+          "Network Centrality"
+        ]
+      },
+      "Demand Potential": {
+        "weight": 0.2633,
+        "features": [
+          "Population Density",
+          "Office Density",
+          "University Proximity",
+          "Night Light"
+        ]
+      },
+      "Urban Context": {
+        "weight": 0.1219,
+        "features": [
+          "Retail Density",
+          "POI Diversity",
+          "Pedestrian Street",
+          "Tourist POIs"
+        ]
+      },
+      "Competition": {
+        "weight": 0.0569,
+        "features": [
+          "Market Opportunity"
+        ]
+      }
+    },
+    "rf_only_features": [
+      "Café Density"
+    ],
+    "note": "Café Density excluded from AHP (criterion redundancy). Retained in RF per Han et al. 2024 co-location theory."
+  },
+  "colour_ramp": {
+    "field": "combined_score",
+    "type": "continuous",
+    "method": "percentile-rank average of ahp_score and rf_probability",
+    "note": "combined_score is uniformly distributed in [0,1]. Colour stops are percentile-based, not absolute score values.",
+    "stops": [
+      [
+        0.0,
+        "#d73027"
+      ],
+      [
+        0.2,
+        "#f46d43"
+      ],
+      [
+        0.35,
+        "#fdae61"
+      ],
+      [
+        0.5,
+        "#a6d96a"
+      ],
+      [
+        0.65,
+        "#1a9850"
+      ]
+    ],
+    "tier_colours": {
+      "HIGH": "#1a9850",
+      "MEDIUM": "#fdae61",
+      "LOW": "#d73027"
+    }
+  },
+  "files": {
+    "gold_webgis_layer.geojson": "Production WebGIS layer — all cells, all scores, SHAP vectors, tier",
+    "gold_shap_scores.geojson": "Full Gold SHAP output (includes raw feature col names — not for frontend)",
+    "gold_ahp_scores.geojson": "AHP scores and cluster scores per cell",
+    "gold_rf_scores.geojson": "RF probability scores and ranks",
+    "gold_ahp_vs_shap_comparison.csv": "Core thesis comparison table",
+    "gold_shap_importance.csv": "Global SHAP feature importance",
+    "gold_rf_model.pkl": "Trained Random Forest (Phase 2 starting point)",
+    "gold_feature_cols.pkl": "Feature column order for model inference",
+    "gold_val_idx.pkl": "Held-out validation cell indices"
+  }
+}
