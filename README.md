@@ -1,5 +1,8 @@
 # Café Site Suitability — Milan · Geospatial ML Pipeline with Live WebGIS
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-WebGIS-1a9850?style=for-the-badge)](https://mavilasantos.github.io/cafe-site-suitability-milan-geospatial-ml/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+
 A reproducible spatial data pipeline that scores 971 hexagonal cells across Milan for café-retail viability, combining an expert-weighted scoring model with a trained classifier, an explainability layer, and a browser-based analytical frontend — built to compare how a rules-based approach and a data-driven approach converge (or don't) on the same real-estate question.
 
 ---
@@ -149,7 +152,7 @@ The headline finding isn't that one method "wins" — it's that a 79% cell-level
 
 The scored 971-cell grid is served through a static WebGIS — choropleth map, tier filtering, top-ranked cell browser, and a full per-cell signed SHAP breakdown for every location.
 
-**[→ Launch the WebGIS](webgis/index.html)** 
+**[→ Launch the WebGIS](https://mavilasantos.github.io/cafe-site-suitability-milan-geospatial-ml/)** 
 
 ## Setup & Run
 
@@ -195,9 +198,13 @@ python -m http.server 8080
 
 ```
 cafe-site-suitability-milan-geospatial-ml/
+├── .gitignore
+├── LICENSE
 ├── README.md
 ├── requirements.txt
-├── .gitignore
+├── .github/
+│   └── workflows/
+│       └── deploy-pages.yml
 ├── assets/
 │   └── architecture_diagram.png
 ├── pipeline/
