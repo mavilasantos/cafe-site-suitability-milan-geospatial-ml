@@ -144,13 +144,13 @@ function initializeMap() {
 
   L.control.zoom({ position: "topright" }).addTo(state.map);
 
-  // CARTO Positron — neutral grey that does not compete with the choropleth
+  // Esri World Light Gray Canvas — neutral grey basemap, keyless
   L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png",
+    "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",
     {
       attribution:
-        '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors ' +
-        '&copy; <a href="https://carto.com/">CARTO</a>',
+        'Tiles &copy; Esri &mdash; Esri, HERE, Garmin, &copy; OpenStreetMap contributors, and the GIS user community',
+      maxNativeZoom: 16,
       maxZoom: 19,
     }
   ).addTo(state.map);
